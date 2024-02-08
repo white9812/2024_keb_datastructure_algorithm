@@ -6,11 +6,12 @@ def print_poly(f_x) -> str:
         coefficient = f_x[i]
         #if coefficient !=0: <- 내 생각
         if coefficient == 0:
+            term = term - 1
             continue # 계수가 0일때는 그냥 지나간다.
         if coefficient >=0 and i !=0 :
             poly_expression = poly_expression + "+"
         poly_expression = poly_expression + f'{coefficient}x^{term} '
-        term = term - 1
+
 
     return poly_expression
 
