@@ -58,6 +58,19 @@ def delete_node(delete_data) :
             return
     print(f"{delete_data}이(가)삭제 할 수 없음")
 
+def find_node(find_data):
+    global head, current, pre
+
+    current = head
+    if current.data is find_data:
+        return current
+    while current.link is not None:
+        current = current.link
+        if current.data is find_data:
+            return current
+    return Node()# 빈 노드 반환
+
+
 head, current, pre = None, None, None
 data_array = ["다현", "정연", "쯔위", "사나", "지효"]
 
@@ -76,15 +89,21 @@ if __name__ == "__main__" :
         pre.link = node
 
 
-    print_nodes(head) #이름들만 꺼내서 출력하도록 함
-    delete_node("다현")
-    print_nodes(head)
-    delete_node("재남")
-    print_nodes(head)
-    insert_node("다현", "화사")
-    print_nodes(head)
-    insert_node("사나", "솔라")
-    print_nodes(head)
-    insert_node("동균", "문별") #동균은 찾을 수 없음 지효까지 갔음 그래서 지효의 링크에
+    #print_nodes(head) #이름들만 꺼내서 출력하도록 함
+    # print_nodes(find_node("다현")) <-이거 왜 안되는지 생각해보기
+    print(find_node("다현"))
+    print(find_node("다현").data)
+    #print_nodes(find_node("재남"))
+
+    # delete_node("다현")
+    # print_nodes(head)
+    # delete_node("재남")
+    # print_nodes(head)
+    # insert_node("다현", "화사")
+    # print_nodes(head)
+    # insert_node("사나", "솔라")
+    # print_nodes(head)
+    # insert_node("동균", "문별") #동균은 찾을 수 없음 지효까지 갔음 그래서 지효의 링크에
                                                  #문별을 연결해줌
     print_nodes(head)
+    #검색이 많을때는 선형 리스트 사용하기
