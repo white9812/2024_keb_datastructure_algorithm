@@ -43,6 +43,7 @@ def delete_node(delete_data) :
     if head.data is delete_data :         # 첫 번째 노드 삭제
         current = head
         head = head.link
+        print(f"{delete_data}이(가)삭제됨")
         del(current)
         return
 
@@ -52,9 +53,10 @@ def delete_node(delete_data) :
         current = current.link
         if current.data == delete_data :
             pre.link = current.link
+            print(f"{delete_data}이(가)삭제됨")
             del(current)
             return
-
+    print(f"{delete_data}이(가)삭제 할 수 없음")
 
 head, current, pre = None, None, None
 data_array = ["다현", "정연", "쯔위", "사나", "지효"]
@@ -76,6 +78,8 @@ if __name__ == "__main__" :
 
     print_nodes(head) #이름들만 꺼내서 출력하도록 함
     delete_node("다현")
+    print_nodes(head)
+    delete_node("재남")
     print_nodes(head)
     insert_node("다현", "화사")
     print_nodes(head)
