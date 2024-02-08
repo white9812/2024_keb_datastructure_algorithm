@@ -11,6 +11,7 @@ def print_poly(f_x) -> str:
         if coefficient >=0 and i !=0 :
             poly_expression = poly_expression + "+"
         poly_expression = poly_expression + f'{coefficient}x^{term} '
+        term = term - 1
 
 
     return poly_expression
