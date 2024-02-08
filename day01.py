@@ -37,6 +37,24 @@ def insert_node(find_data, insert_data) :
     node = Node()                   # 마지막 노드 삽입
     node.data = insert_data #문별 넣고
     current.link = node #끝까지 갔음, 문별의 링크는 none이 되어서 마지막까지 유지됨
+def delete_node(delete_data) :
+    global head, current, pre
+
+    if head.data is delete_data :         # 첫 번째 노드 삭제
+        current = head
+        head = head.link
+        del(current)
+        return
+
+    current = head                          # 첫 번째  외 노드 삭제
+    while current.link is not None :
+        pre = current
+        current = current.link
+        if current.data == delete_data :
+            pre.link = current.link
+            del(current)
+            return
+
 
 head, current, pre = None, None, None
 data_array = ["다현", "정연", "쯔위", "사나", "지효"]
@@ -57,6 +75,8 @@ if __name__ == "__main__" :
 
 
     print_nodes(head) #이름들만 꺼내서 출력하도록 함
+    delete_node("다현")
+    print_nodes(head)
     insert_node("다현", "화사")
     print_nodes(head)
     insert_node("사나", "솔라")
