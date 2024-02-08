@@ -1,4 +1,14 @@
 import time
+def timer (func):
+    def wrapper(*argc,**kwargs):
+        start = time.time()
+        result= func(*argc,**kwargs)
+        end=time.time()
+        print(f"time elapsed: {end - start}")
+
+        return result
+    return wrapper #closer는 함수 이름만 return 그래서 그냥 inner함수랑은 다름
+
 def factorial(number) -> int:
     '''
     factorial by repetition
@@ -21,19 +31,18 @@ def factorial(number) -> int:
 #         return 1
 #     else:
 #         return number * factorial(number - 1)
-#
-def nCr(n, r) -> int:
+@timer
+def nCr(n, r) -> int: #SRP,OCP violation
     '''
     조합 함수
     :param n:
     :param r:
     :return:
     '''
-    start = time.time()
+
     numerator = factorial(n)
     denominator = factorial(n-r) * factorial(r)
-    end = time.time()
-    print(f"소요시간: {end - start}")
+
     return int(numerator / denominator)
 #단일 책임의 원칙이 망가짐
 #지금 이 함수는 조합을 구하면서 시간까지 재고 있음
