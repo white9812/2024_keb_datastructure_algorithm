@@ -35,25 +35,27 @@
 # return a
 # 참조 때문에 안됐음 -> temp 를 쓰거나 아님 패킹 언패킹하기
 # c++에서는 temp 써야함
-memo=[None for _ in range(100)]
+memo=[None for _ in range(100)] #한번 했던 계산읋 하지않기위해 메모리를 사용한다. 공간하나 씀으로써
 
-def fibo_memoization(n:int,memo)-> int:
+def fibo_memoization(n:int)-> int:
 
     '''
     fibonacci function by recursion with memoization
     :param n: integer number
     :return: integer number
     '''
+    global memo
     if memo[n] is not None:
         return memo[n]
     if n < 2:
         result = n
     else:
-        result = fibo_memoization(n-1,memo)+fibo_memoization(n-2,memo)
+        result = fibo_memoization(n-1)+fibo_memoization(n-2)
 
     memo[n]=result
     return result
 n=int(input("Int number: "))
 for i in range(0,n):
-    print(i)
-    print(fibo_memoization(i,memo))
+    print("<",i,">")
+    print(fibo_memoization(i))
+print(fibo_memoization(n),memo)
