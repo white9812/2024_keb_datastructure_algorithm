@@ -1,18 +1,35 @@
-def decimal_to_octal(number:int)-> str:
+def fibo_recursion(n) :
     '''
-    decimal number to octal number (by recursion)
-    :param number:interger (base dec)
-    :return: string (base octal)
+    fibonacci function by recursion
+    :param n: integer number
+    :return: integer number
     '''
-    if number < 8:
-        return str(number)
-    else:
-        return decimal_to_octal(number//8) +str(number%8)
-    # octal=" "
-    # while number > 0:
-    #     octal = str(number % 8) + octal
-    #     number = number // 8
+    if n == 0 :
+        return 0
+    elif n == 1 :
+        return 1
+    else :
+        return fibo_recursion(n - 1) + fibo_recursion(n - 2)
 
-    return octal
-n = int(input("Input decimal number : "))
-print(decimal_to_octal(n))
+# print('피보나치 수 --> 0 1 ', end='')
+for i in range(0, 20) :
+	print(fibo_recursion(i), end=' ')
+
+def fibo_repetition(number:int)->int:
+    '''
+
+    :param number: integer number
+    :return: integer number
+    '''
+    a=[0,1]
+    # n=int(input("Input number: "))
+        for i in range(1,number):
+            a.append(a[i]+a[i-1])
+    print(a[i]+a[i-1])
+
+
+#교수님 풀이
+a=b
+b=a+b
+return a
+참조때문에 안됐음 -> temp 를 쓰거나 아님 패킹 언패킹하기
