@@ -35,8 +35,12 @@
 # return a
 # 참조 때문에 안됐음 -> temp 를 쓰거나 아님 패킹 언패킹하기
 # c++에서는 temp 써야함
-memo=[None for _ in range(100)] #한번 했던 계산읋 하지않기위해 메모리를 사용한다. 공간하나 씀으로써
+# memo=[None for _ in range(100)] #한번 했던 계산읋 하지않기위해 메모리를 사용한다. 공간하나 씀으로써
+# memo[0]=0
+# memo[1]=1
 
+# memo=[0 if i==0 else 1 if i == 1 else None for i in range(100) ]
+memo=[0,1]+[None]*(100-1)
 def fibo_memoization(n:int)-> int:
 
     '''
@@ -47,10 +51,10 @@ def fibo_memoization(n:int)-> int:
     global memo
     if memo[n] is not None:
         return memo[n]
-    if n < 2:
-        result = n
-    else:
-        result = fibo_memoization(n-1)+fibo_memoization(n-2)
+    # if n < 2:
+    #     result = n
+    # else:
+    result = fibo_memoization(n-1)+fibo_memoization(n-2)
 
     memo[n]=result
     return result
