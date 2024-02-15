@@ -1,25 +1,36 @@
-## 함수 선언 부분 ##
-def palindrome(pStr) :
-    # print(pStr)
-    if len(pStr) <= 1 :
-        return True
+import tkinter as tk
+memo=[0 if i==0 else 1 if i == 1 else None for i in range(100) ]
+def fibo_memoization(n:int)-> int:
 
-    if pStr[0] != pStr[-1] :
-        return False
+    '''
+    fibonacci function by recursion with memoization
+    :param n: integer number
+    :return: integer number
+    '''
+    global memo
+    if memo[n] is not None:
+        return memo[n]
 
-    return palindrome(pStr[1:len(pStr)-1]) # 슬라이싱
+    result = fibo_memoization(n-1)+fibo_memoization(n-2)
+    memo[n]=result
+    return result
+w=tk.Tk() #create window object
+w.title("Fibonacci")
+w.geometry("250x100")
+#create widget
+lbl_display_fibonacci_result=tk.Label(w,text="Fibonacci by memoization")
+en_input_number=tk.Entry(w)#입력상자 만들기
+btn_click=tk.Button(w,text="Click") #여기까진 안올라갔음
+
+#layout
+lbl_display_fibonacci_result.pack()
+en_input_number.pack(fill="x")
+btn_click.pack(fill="x")
+
+w.mainloop()
 
 
-## 전역 변수 선언 부분 ##
-strAry = ["reaver", "kayak", "Borrow or rob", "주유소의 소유주", "야 너 이번주 주번이 너야", "살금 살금"]
-a='봄봄'
-print(a[1:len(a)-1])
-## 메인 코드 부분 ##
+# n=int(input("Int number: ")) # Input box
+# print(f"fibonacci({n})={fibo_memoization(n)}") # Label
 
-for testStr in strAry :
-    print(testStr, end = '--> ' )
-    testStr = testStr.lower().replace(' ','') #"주유소의소유주" 이런식으로 띄어쓰기 사라짐
-    if palindrome(testStr) :
-        print('O')
-    else :
-        print('X')
+
